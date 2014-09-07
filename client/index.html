@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body data-ng-app="bodyStats" data-ng-controller="MainController">
+
+
+    <h2>Insert</h2>
+
+    <ul>
+        <li>Name: <input type="text" data-ng-model="newName" ></li>
+        <li>Date: <input type="date" data-ng-model="newDate" ></li>
+        <li>Weight <input type="number" data-ng-model="newWeight" ></li>
+        <li>Chest: <input type="number" data-ng-model="newFat_chest" ></li>
+        <li>Abdominal: <input type="number" data-ng-model="newFatAbdominal" ></li>
+        <li>Thigh: <input type="number" data-ng-model="newFatThigh" ></li>
+        <li>Triceps: <input type="number" data-ng-model="newFatTriceps" ></li>
+        <li>Subscapular: <input type="number" data-ng-model="newFatSubscapular" ></li>
+        <li>Suprailiac: <input type="number" data-ng-model="newFatSuprailiac" ></li>
+        <li>Midaxillary: <input type="number" data-ng-model="newFatMidaxillary" ></li>
+        <li>Neck: <input type="number" data-ng-model="newNeck" ></li>
+        <li>Shoulders: <input type="number" data-ng-model="newShoulders" ></li>
+        <li>Chest:<input type="number" data-ng-model="newChest" ></li>
+        <li>Biceps: <input type="number" data-ng-model="newBiceps" ></li>
+        <li>Waist:<input type="number" data-ng-model="newWaist" ></li>
+        <li>Hips: <input type="number" data-ng-model="newHips" ></li>
+        <li>Thigh:<input type="number" data-ng-model="newThigh" ></li>
+    </ul>
+
+    <button data-ng-click="insertProfile()">Insert Profile</button>
+
+
+
+
+
+
+<ul data-ng-repeat="profile in profiles">
+    <li>
+        {{ profile.name }}
+    </li>
+    <li>
+        <ul data-ng-repeat="entry in profile.entries">
+            <li>Date: {{ entry.date }}</li>
+            <li>Weight (Kg): {{ entry.weight }}</li>
+            <li>Chest: {{ entry.fat_chest }}</li>
+            <li>Abdominal: {{ entry.fat_abdominal }}</li>
+            <li>Thigh: {{ entry.fat_thigh }}</li>
+            <li>Triceps: {{ entry.fat_triceps }}</li>
+            <li>Subscapular: {{ entry.fat_subscapular }}</li>
+            <li>Suprailiac: {{ entry.fat_suprailiac }}</li>
+            <li>Midaxillary: {{ entry.fat_midaxillary }}</li>
+            <li>Neck: {{ entry.neck }}</li>
+            <li>Shoulders: {{ entry.schoulders }}</li>
+            <li>Chest: {{ entry.chest }}</li>
+            <li>Biceps: {{ entry.biceps }}</li>
+            <li>Waist: {{ entry.waist }}</li>
+            <li>Hips: {{ entry.hips }}</li>
+            <li>Thigh: {{ entry.thigh }}</li>
+        </ul>
+    </li>
+
+</ul>
+<script src="../bower_components/angular/angular.js"></script>
+<script src="app.js"></script>
+</body>
+</html>
