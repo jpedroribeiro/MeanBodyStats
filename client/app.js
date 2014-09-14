@@ -41,9 +41,12 @@ bodyStats.controller("MainController", function($http, $scope, MainFactory){
     });
 
 
-    // Insert New Profile
-    $scope.insertProfile = function(){
+    // Inserts or updates profile
+    $scope.insertData = function(){
+
+        // new user?
         var newProfile = {
+            _id: $scope.newId,
             name: $scope.newName,
             entries: []
         };
@@ -52,7 +55,7 @@ bodyStats.controller("MainController", function($http, $scope, MainFactory){
             {
                 date: $scope.newDate,
                 weight: $scope.newWeight,
-                fat_chest: $scope.new_fatChest,
+                fat_chest: $scope.newFat_chest,
                 fat_abdominal: $scope.newFatAbdominal,
                 fat_thigh: $scope.newFatThigh,
                 fat_triceps: $scope.newFatTriceps,
@@ -70,6 +73,8 @@ bodyStats.controller("MainController", function($http, $scope, MainFactory){
         );
 
         MainFactory.insertNewProfile(newProfile);
+
+        $scope.profiles.push(newProfile);
     }
 
 });

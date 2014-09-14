@@ -10,6 +10,7 @@
     <h2>Insert</h2>
 
     <ul>
+        <li>id: <input type="text" data-ng-model="newId" ></li>
         <li>Name: <input type="text" data-ng-model="newName" ></li>
         <li>Date: <input type="date" data-ng-model="newDate" ></li>
         <li>Weight <input type="number" data-ng-model="newWeight" ></li>
@@ -29,7 +30,7 @@
         <li>Thigh:<input type="number" data-ng-model="newThigh" ></li>
     </ul>
 
-    <button data-ng-click="insertProfile()">Insert Profile</button>
+    <button data-ng-click="insertData()">Insert Data</button>
 
 
 
@@ -37,10 +38,7 @@
 
 
 <ul data-ng-repeat="profile in profiles">
-    <li>
-        {{ profile.name }}
-    </li>
-    <li>
+    <li>{{ profile.name }} <small>{{profile._id}}</small> <button data-ng-click="removeUser()">Remove User</button></li>
         <ul data-ng-repeat="entry in profile.entries">
             <li>Date: {{ entry.date }}</li>
             <li>Weight (Kg): {{ entry.weight }}</li>
@@ -52,12 +50,13 @@
             <li>Suprailiac: {{ entry.fat_suprailiac }}</li>
             <li>Midaxillary: {{ entry.fat_midaxillary }}</li>
             <li>Neck: {{ entry.neck }}</li>
-            <li>Shoulders: {{ entry.schoulders }}</li>
+            <li>Shoulders: {{ entry.shoulders }}</li>
             <li>Chest: {{ entry.chest }}</li>
             <li>Biceps: {{ entry.biceps }}</li>
             <li>Waist: {{ entry.waist }}</li>
             <li>Hips: {{ entry.hips }}</li>
             <li>Thigh: {{ entry.thigh }}</li>
+            <li><button data-ng-click="removeEntry()">Remove Entry</button></li>
         </ul>
     </li>
 
