@@ -11,13 +11,15 @@ bodyStats.factory("MainFactory", function($http){
 
         // DB request
         getData: function () {
+            // TODO: loading spinner?
             return $http.get("http://localhost:3000/load");
         },
 
         // Set/Update DB with new data
-        insertNewProfile: function(newProfile) {
-            $http.post("http://localhost:3000/save", newProfile).success(function(){
+        insertNewProfile: function(newEntry) {
+            $http.post("http://localhost:3000/save", newEntry).success(function(){
                console.log('boom');
+                // Todo: do something here
             });
         }
 
@@ -44,15 +46,10 @@ bodyStats.controller("MainController", function($http, $scope, MainFactory){
     // Inserts or updates profile
     $scope.insertData = function(){
 
-        // new user?
-        var newProfile = {
+        var newEntry = {
             _id: $scope.newId,
             name: $scope.newName,
-            entries: []
-        };
-
-        newProfile.entries.push(
-            {
+            entry: {
                 date: $scope.newDate,
                 weight: $scope.newWeight,
                 fat_chest: $scope.newFat_chest,
@@ -70,11 +67,11 @@ bodyStats.controller("MainController", function($http, $scope, MainFactory){
                 hips: $scope.newHips,
                 thigh: $scope.newThigh
             }
-        );
+        };
 
-        MainFactory.insertNewProfile(newProfile);
+        MainFactory.insertNewProfile(newEntry);
 
-        $scope.profiles.push(newProfile);
+       //TODO: reload
     }
 
 });

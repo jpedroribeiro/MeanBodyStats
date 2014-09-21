@@ -1,8 +1,9 @@
 TODO:
-- post to same user (update entry)
+- auto reload list
 - remove entry
 - remove user
 - check http status on save?
+- check for TODOs on code
 - ...
 - style
 
