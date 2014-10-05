@@ -11,15 +11,17 @@ bodyStats.factory("MainFactory", function($http){
 
         // DB request
         getData: function () {
-            // TODO: loading spinner?
             return $http.get("http://localhost:3000/load");
         },
 
         // Set/Update DB with new data
         insertNewProfile: function(newEntry) {
-            $http.post("http://localhost:3000/save", newEntry).success(function(){
-                // TODO: confirmation message?
-            });
+            return $http.post("http://localhost:3000/save", newEntry);
+        },
+
+        // Removes single entry
+        removeEntry: function(deleteThisEntry){
+            return $http.post("http://localhost:3000/del_entry", deleteThisEntry);
         }
 
     };
@@ -60,21 +62,39 @@ bodyStats.controller("MainController", function($http, $scope, MainFactory){
         }
     };
 
-    // Loads data
-    MainFactory.getData().success(function(result){
-        $scope.profiles = result;
-    });
 
-    // temporary solution for auto load new inserted results
+    // Refreshes local scope
     $scope.refresh = function(){
         // Loads data
         MainFactory.getData().success(function(result){
             $scope.profiles = result;
         });
-    }
+    };
+
+    // Click Event: Removes Entry
+    $scope.removeEntry = function(profileID, entryDate){
+        var deleteThisEntry = {
+            '_id': profileID,
+            'entryDate': entryDate
+        };
+        MainFactory.removeEntry(deleteThisEntry).success(function(){
+            // TODO: success message?
+            $scope.refresh();
+        });
+    };
+
+    // Click Event: Removes Profile (user)
+    $scope.removeUser = function(profileID){
+        console.log(profileID);
+    };
+
+    // Loads data
+    MainFactory.getData().success(function(result){
+        $scope.profiles = result;
+    });
 
 
-    // Inserts or updates profile
+    // Click Event: Inserts or updates profile
     $scope.insertData = function(){
 
         var newEntry = {
@@ -100,12 +120,14 @@ bodyStats.controller("MainController", function($http, $scope, MainFactory){
             }
         };
 
-        MainFactory.insertNewProfile(newEntry);
+        MainFactory.insertNewProfile(newEntry).success(function(data, status, headers, config){
+            // TODO: add spinner before calling factory?
+            // TODO: success message?
+            $scope.refresh();
+        });
 
         // clears form
         $scope.entry = emptyForm;
-
-
     }
 
 });

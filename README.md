@@ -1,8 +1,8 @@
 TODO:
-- auto reload list
 - remove entry
 - remove user
-- check http status on save?
+- move controllers from server routes.js
+- check double http status on post?
 - check for TODOs on code
 - ...
 - style

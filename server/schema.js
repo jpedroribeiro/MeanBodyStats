@@ -3,8 +3,10 @@
 module.exports = function(server) {
 
     var mongoose = require("mongoose");
+
     // Logs to terminal
-    mongoose.set('debug', true);
+    //mongoose.set('debug', true);
+
     // Connects to Mongo DB
     mongoose.connect('mongodb://localhost/bodystats');
 

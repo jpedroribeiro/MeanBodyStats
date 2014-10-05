@@ -5,7 +5,6 @@
     <title></title>
 </head>
 <body data-ng-app="bodyStats" data-ng-controller="MainController">
-<button data-ng-click="refresh()">Refresh (temporary solution)</button>
 
     <h2>Insert</h2>
     <form>
@@ -39,7 +38,7 @@
 
 
 <ul data-ng-repeat="profile in profiles">
-    <li>{{ profile.name }} <small>{{profile._id}}</small> <button data-ng-click="removeUser()">Remove User</button></li>
+    <li>{{ profile.name }} <small>{{profile._id}}</small> <button data-ng-click="removeUser(profile._id)">Remove User</button></li>
         <ul data-ng-repeat="entry in profile.entries">
             <li>Date: {{ entry.date }}</li>
             <li>Weight (Kg): {{ entry.weight }}</li>
@@ -57,7 +56,7 @@
             <li>Waist: {{ entry.waist }}</li>
             <li>Hips: {{ entry.hips }}</li>
             <li>Thigh: {{ entry.thigh }}</li>
-            <li><button data-ng-click="removeEntry()">Remove Entry</button></li>
+            <li><button data-ng-click="removeEntry(profile._id, entry.date)">Remove Entry</button></li>
         </ul>
     </li>
 

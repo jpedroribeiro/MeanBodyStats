@@ -1,21 +1,29 @@
 'use strict';
 
+
 module.exports = function(server, Profile){
+
+    /**
+     * Request app data from database
+     */
     server.get('/load', function(req, res){
         Profile.find(function(err,doc){
             res.send(doc);
         });
     });
 
+
+    /**
+     * Saves or updates data
+     */
     server.post('/save', function(req, res){
 
-        // Reads input and stringifies it
+        // Reads input and 'stringifies' it
         var content = '';
         req.on("data",function(chunk){
             content = chunk.toString();
         });
 
-        // Saves or Updates profile
         req.on("end",function(){
             var parsedContent = JSON.parse(content);
             Profile.findOne({ '_id': parsedContent['_id']}, function(err, resultProfile){
@@ -38,13 +46,35 @@ module.exports = function(server, Profile){
                 resultProfile.entries.push(parsedContent['entry']);
                 resultProfile.save( function ( err, resultProfile ){
                     if( err ) {
-                        console.log("Error found when trying to save profile: " +  err );
+                        console.log("Error found when trying to save profile: " + err);
                         return;
                     }
                     res.status(200);
                     res.end();
                 });
             });
+        });
+    });
+
+    /**
+     * Deletes a single entry from a profile
+     */
+    server.post('/del_entry', function(req, res){
+        // Reads input and 'stringifies' it
+        var content = '';
+        req.on("data",function(chunk){
+            content = chunk.toString();
+        });
+
+        req.on("end",function(){
+            var parsedContent = JSON.parse(content);
+            // TODO: continuar aqui, esse codigo remove todo elemento, tentar unset? tentar no mongodb antes a depois passar aqui
+            Profile.findOneAndRemove({'_id':parsedContent['_id'], 'entries': {$elemMatch: {'date': parsedContent['entryDate']}}},
+                function(err, resultProfile) {
+                    res.status(200);
+                    res.end();
+                }
+            );
         });
     });
 
