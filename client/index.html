@@ -38,7 +38,7 @@
 
 
 <ul data-ng-repeat="profile in profiles">
-    <li>{{ profile.name }} <small>{{profile._id}}</small> <button data-ng-click="removeUser(profile._id)">Remove User</button></li>
+    <li>{{ profile.name }} <small>{{profile._id}}</small> <button data-ng-click="removeProfile(profile._id, entry.date)">Remove User</button></li>
         <ul data-ng-repeat="entry in profile.entries">
             <li>Date: {{ entry.date }}</li>
             <li>Weight (Kg): {{ entry.weight }}</li>

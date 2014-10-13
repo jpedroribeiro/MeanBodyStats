@@ -72,12 +72,33 @@ module.exports = function(server, Profile){
                 {'_id': parsedContent['_id']},
                 {$pull: {'entries': {'date': parsedContent['entryDate']}}},
                 function(err, resultProfile) {
-                    console.log("Removido");
+                    console.log("Entry removed");
                     console.log(resultProfile);
                     res.status(200);
                     res.end();
                 }
             );
+        });
+    });
+
+    /**
+     * Deletes an entire profile from collection
+     */
+    server.post('/rem_profile', function(req, res){
+        // Reads input and 'stringifies' it
+        var content = '';
+        req.on("data",function(chunk){
+            content = chunk.toString();
+        });
+
+        req.on("end", function(){
+            var parsedContent = JSON.parse(content);
+            Profile.findOneAndRemove({'_id': parsedContent['_id']}, function(err, resultProfile) {
+                console.log("Profile removed");
+                console.log(resultProfile);
+                res.status(200);
+                res.end();
+            });
         });
     });
 

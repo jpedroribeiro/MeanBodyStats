@@ -1,6 +1,7 @@
 'use strict';
 
 var bodyStats = angular.module("bodyStats", []);
+var serverURL = "http://localhost:3000";
 
 
 /**
@@ -11,17 +12,22 @@ bodyStats.factory("MainFactory", function($http){
 
         // DB request
         getData: function () {
-            return $http.get("http://localhost:3000/load");
+            return $http.get(serverURL + "/load");
         },
 
         // Set/Update DB with new data
         insertNewProfile: function(newEntry) {
-            return $http.post("http://localhost:3000/save", newEntry);
+            return $http.post(serverURL + "/save", newEntry);
         },
 
         // Removes single entry
         removeEntry: function(removeThisEntry){
-            return $http.post("http://localhost:3000/rem_entry", removeThisEntry);
+            return $http.post(serverURL + "/rem_entry", removeThisEntry);
+        },
+
+        // Removes a whole profile
+        removeProfile: function(removeThisProfile){
+            return $http.post(serverURL + "/rem_profile", removeThisProfile);
         }
 
     };
@@ -84,8 +90,15 @@ bodyStats.controller("MainController", function($http, $scope, MainFactory){
     };
 
     // Click Event: Removes Profile (user)
-    $scope.removeUser = function(profileID){
-        console.log(profileID);
+    $scope.removeProfile = function(profileID, entryDate){
+        var removeThisProfile = {
+            '_id': profileID,
+            'entryDate': entryDate
+        };
+        MainFactory.removeProfile(removeThisProfile).success(function(){
+            // TODO: success message?
+            $scope.refresh();
+        });
     };
 
     // Loads data
