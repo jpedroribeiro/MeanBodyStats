@@ -59,7 +59,7 @@ module.exports = function(server, Profile){
     /**
      * Deletes a single entry from a profile
      */
-    server.post('/del_entry', function(req, res){
+    server.post('/rem_entry', function(req, res){
         // Reads input and 'stringifies' it
         var content = '';
         req.on("data",function(chunk){
@@ -68,9 +68,12 @@ module.exports = function(server, Profile){
 
         req.on("end",function(){
             var parsedContent = JSON.parse(content);
-            // TODO: continuar aqui, esse codigo remove todo elemento, tentar unset? tentar no mongodb antes a depois passar aqui
-            Profile.findOneAndRemove({'_id':parsedContent['_id'], 'entries': {$elemMatch: {'date': parsedContent['entryDate']}}},
+            Profile.findOneAndUpdate(
+                {'_id': parsedContent['_id']},
+                {$pull: {'entries': {'date': parsedContent['entryDate']}}},
                 function(err, resultProfile) {
+                    console.log("Removido");
+                    console.log(resultProfile);
                     res.status(200);
                     res.end();
                 }

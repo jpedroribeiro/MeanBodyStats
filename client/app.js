@@ -20,8 +20,8 @@ bodyStats.factory("MainFactory", function($http){
         },
 
         // Removes single entry
-        removeEntry: function(deleteThisEntry){
-            return $http.post("http://localhost:3000/del_entry", deleteThisEntry);
+        removeEntry: function(removeThisEntry){
+            return $http.post("http://localhost:3000/rem_entry", removeThisEntry);
         }
 
     };
@@ -73,11 +73,11 @@ bodyStats.controller("MainController", function($http, $scope, MainFactory){
 
     // Click Event: Removes Entry
     $scope.removeEntry = function(profileID, entryDate){
-        var deleteThisEntry = {
+        var removeThisEntry = {
             '_id': profileID,
             'entryDate': entryDate
         };
-        MainFactory.removeEntry(deleteThisEntry).success(function(){
+        MainFactory.removeEntry(removeThisEntry).success(function(){
             // TODO: success message?
             $scope.refresh();
         });

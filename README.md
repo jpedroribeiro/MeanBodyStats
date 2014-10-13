@@ -1,5 +1,4 @@
 TODO:
-- remove entry
 - remove user
 - move controllers from server routes.js
 - check double http status on post?
