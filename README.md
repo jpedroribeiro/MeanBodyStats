@@ -1,5 +1,4 @@
 TODO:
-- package?
 - check for TODOs on code
 - style
 
