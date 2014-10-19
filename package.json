@@ -1,8 +1,8 @@
 {
   "name": "MeanBodyStats",
   "version": "1.0.0",
-  "description": "TODO: - post to same user (update), post to new user - ... - npm init - git - style",
-  "main": "index.js",
+  "description": "Playing with MEAN stack to build a simple body measurement app.",
+  "main": "server/server.js",
   "dependencies": {
     "cors": "^2.4.1",
     "express": "^4.8.7",
@@ -12,6 +12,6 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "author": "",
+  "author": "J. Pedro Ribeiro",
   "license": "ISC"
 }
