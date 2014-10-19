@@ -8,7 +8,7 @@ module.exports = function(server, serverCtrl){
     });
 
     server.post('/save', function(req, res){
-        serverCtrl.updateProfile(req, res);
+        serverCtrl.saveProfile(req, res);
     });
 
     server.post('/rem_entry', function(req, res){

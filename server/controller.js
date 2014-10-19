@@ -21,7 +21,7 @@ module.exports = function(Profile){
          * @param req
          * @param res
          */
-        updateProfile: function (req, res){
+        saveProfile: function (req, res){
             // Reads input and 'stringifies' it
             var content = '';
             req.on("data",function(chunk){

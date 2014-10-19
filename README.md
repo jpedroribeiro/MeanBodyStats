@@ -1,7 +1,6 @@
 TODO:
-- check double http status on post?
+- package?
 - check for TODOs on code
-- ...
 - style
 
 

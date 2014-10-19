@@ -7,30 +7,30 @@
 <body data-ng-app="bodyStats" data-ng-controller="MainController">
 
     <h2>Insert</h2>
-    <form>
+    <form name="entryForm">
         <ul>
             <li>id: <input type="text" data-ng-model="entry.newId" ></li>
-            <li>Name: <input type="text" data-ng-model="entry.newName" ></li>
-            <li>Date: <input type="date" data-ng-model="entry.newDate" ></li>
-            <li>Weight <input type="number" data-ng-model="entry.newWeight" ></li>
-            <li>Chest: <input type="number" data-ng-model="entry.newFat_chest" ></li>
-            <li>Abdominal: <input type="number" data-ng-model="entry.newFatAbdominal" ></li>
-            <li>Thigh: <input type="number" data-ng-model="entry.newFatThigh" ></li>
-            <li>Triceps: <input type="number" data-ng-model="entry.newFatTriceps" ></li>
-            <li>Subscapular: <input type="number" data-ng-model="entry.newFatSubscapular" ></li>
-            <li>Suprailiac: <input type="number" data-ng-model="entry.newFatSuprailiac" ></li>
-            <li>Midaxillary: <input type="number" data-ng-model="entry.newFatMidaxillary" ></li>
-            <li>Neck: <input type="number" data-ng-model="entry.newNeck" ></li>
-            <li>Shoulders: <input type="number" data-ng-model="entry.newShoulders" ></li>
-            <li>Chest:<input type="number" data-ng-model="entry.newChest" ></li>
-            <li>Biceps: <input type="number" data-ng-model="entry.newBiceps" ></li>
-            <li>Waist:<input type="number" data-ng-model="entry.newWaist" ></li>
-            <li>Hips: <input type="number" data-ng-model="entry.newHips" ></li>
-            <li>Thigh:<input type="number" data-ng-model="entry.newThigh" ></li>
+            <li>Name: <input type="text" data-ng-model="entry.newName" required></li>
+            <li>Date: <input type="date" data-ng-model="entry.newDate" required></li>
+            <li>Weight <input type="number" data-ng-model="entry.newWeight" required></li>
+            <li>Chest: <input type="number" data-ng-model="entry.newFat_chest" required></li>
+            <li>Abdominal: <input type="number" data-ng-model="entry.newFatAbdominal" required></li>
+            <li>Thigh: <input type="number" data-ng-model="entry.newFatThigh" required></li>
+            <li>Triceps: <input type="number" data-ng-model="entry.newFatTriceps" required></li>
+            <li>Subscapular: <input type="number" data-ng-model="entry.newFatSubscapular" required></li>
+            <li>Suprailiac: <input type="number" data-ng-model="entry.newFatSuprailiac" required></li>
+            <li>Midaxillary: <input type="number" data-ng-model="entry.newFatMidaxillary" required></li>
+            <li>Neck: <input type="number" data-ng-model="entry.newNeck" required></li>
+            <li>Shoulders: <input type="number" data-ng-model="entry.newShoulders" required></li>
+            <li>Chest:<input type="number" data-ng-model="entry.newChest" required></li>
+            <li>Biceps: <input type="number" data-ng-model="entry.newBiceps" required></li>
+            <li>Waist:<input type="number" data-ng-model="entry.newWaist" required></li>
+            <li>Hips: <input type="number" data-ng-model="entry.newHips" required></li>
+            <li>Thigh:<input type="number" data-ng-model="entry.newThigh" required></li>
         </ul>
+        <input type="submit" data-ng-click="insertData()" value="Insert Data">
     </form>
 
-    <button data-ng-click="insertData()">Insert Data</button>
 
 
 
