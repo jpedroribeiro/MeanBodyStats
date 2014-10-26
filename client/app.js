@@ -110,7 +110,8 @@ bodyStats.controller("MainController", function($http, $scope, MainFactory){
     // Click Event: Inserts or updates profile
     $scope.insertData = function(){
 
-        if ( entryForm.$valid ){
+        if ( $scope.entryForm.$valid ){
+            console.log("success");
             var newEntry = {
                 _id: $scope.entry.newId,
                 name: $scope.entry.newName,
