@@ -4,65 +4,159 @@
     <meta charset="UTF-8">
     <link rel="stylesheet" href="css/bootstrap.min.css">
     <link rel="stylesheet" href="css/bootstrap-theme.min.css">
+    <link rel="stylesheet" href="css/styles.css">
     <title></title>
 </head>
 <body data-ng-app="bodyStats" data-ng-controller="MainController">
 
-    <h2>Insert</h2>
+
+<div class="navbar navbar-inverse">
+    <div class="container">
+        <div class="navbar-collapse collapse">
+            <ul class="nav navbar-nav">
+                <li class="active"><a href="#">View Entries</a></li>
+                <li><a href="#insert">Insert New Entry</a></li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+<div class="col-md-12">
+
+
+    <div class="page-header">
+        <h1>Entries</h1>
+    </div>
+    <section data-ng-repeat="profile in profiles">
+        <header>
+            <h2>{{ profile.name }}</h2>
+            <small class="label label-default">{{profile._id}}</small>
+            <span class="glyphicon glyphicon-remove" data-ng-click="removeProfile(profile._id, entry.date)"></span>
+        </header>
+        <div data-ng-repeat="entry in profile.entries" class="eachEntry">
+            <ul class="col-md-4">
+                <li class="list-group-item list-group-item-warning">Info</li>
+                <li class="list-group-item">Date: {{ entry.date }}</li>
+                <li class="list-group-item">Weight (Kg): {{ entry.weight }}</li>
+                <li class="list-group-item"><button type="button" class="btn btn-xs btn-danger" data-ng-click="removeEntry(profile._id, entry.date)">Remove Entry</button></li>
+            </ul>
+            <ul class="col-md-4">
+                <li class="list-group-item list-group-item-warning">Fat</li>
+                <li class="list-group-item">Chest: {{ entry.fat_chest }}</li>
+                <li class="list-group-item">Abdominal: {{ entry.fat_abdominal }}</li>
+                <li class="list-group-item">Thigh: {{ entry.fat_thigh }}</li>
+                <li class="list-group-item">Triceps: {{ entry.fat_triceps }}</li>
+                <li class="list-group-item">Subscapular: {{ entry.fat_subscapular }}</li>
+                <li class="list-group-item">Suprailiac: {{ entry.fat_suprailiac }}</li>
+                <li class="list-group-item">Midaxillary: {{ entry.fat_midaxillary }}</li>
+            </ul>
+            <ul class="col-md-4">
+                <li class="list-group-item list-group-item-warning">Measures (cm) </li>
+                <li class="list-group-item">Neck: {{ entry.neck }}</li>
+                <li class="list-group-item">Shoulders: {{ entry.shoulders }}</li>
+                <li class="list-group-item">Chest: {{ entry.chest }}</li>
+                <li class="list-group-item">Biceps: {{ entry.biceps }}</li>
+                <li class="list-group-item">Waist: {{ entry.waist }}</li>
+                <li class="list-group-item">Hips: {{ entry.hips }}</li>
+                <li class="list-group-item">Thigh: {{ entry.thigh }}</li>
+            </ul>
+        </div>
+    </section>
+
+
+
+
+    <div class="page-header">
+        <h1 id="insert">Insert Entry</h1>
+    </div>
     <form name="entryForm">
-        <ul>
-            <li>id: <input type="text" data-ng-model="entry.newId" ></li>
-            <li>Name: <input type="text" data-ng-model="entry.newName" required></li>
-            <li>Date: <input type="date" data-ng-model="entry.newDate" required></li>
-            <li>Weight <input type="number" data-ng-model="entry.newWeight" required></li>
-            <li>Chest: <input type="number" data-ng-model="entry.newFat_chest" required></li>
-            <li>Abdominal: <input type="number" data-ng-model="entry.newFatAbdominal" required></li>
-            <li>Thigh: <input type="number" data-ng-model="entry.newFatThigh" required></li>
-            <li>Triceps: <input type="number" data-ng-model="entry.newFatTriceps" required></li>
-            <li>Subscapular: <input type="number" data-ng-model="entry.newFatSubscapular" required></li>
-            <li>Suprailiac: <input type="number" data-ng-model="entry.newFatSuprailiac" required></li>
-            <li>Midaxillary: <input type="number" data-ng-model="entry.newFatMidaxillary" required></li>
-            <li>Neck: <input type="number" data-ng-model="entry.newNeck" required></li>
-            <li>Shoulders: <input type="number" data-ng-model="entry.newShoulders" required></li>
-            <li>Chest:<input type="number" data-ng-model="entry.newChest" required></li>
-            <li>Biceps: <input type="number" data-ng-model="entry.newBiceps" required></li>
-            <li>Waist:<input type="number" data-ng-model="entry.newWaist" required></li>
-            <li>Hips: <input type="number" data-ng-model="entry.newHips" required></li>
-            <li>Thigh:<input type="number" data-ng-model="entry.newThigh" required></li>
-        </ul>
-        <input type="submit" data-ng-click="insertData()" value="Insert Data">
+        <div class="col-lg-8">
+            <div class="input-group">
+                <span class="input-group-addon">id</span>
+                <input type="text" class="form-control" data-ng-model="entry.newId">
+            </div>
+            <div class="input-group">
+                <span class="input-group-addon">Name</span>
+                <input type="text" class="form-control" data-ng-model="entry.newName" required>
+            </div>
+            <div class="input-group">
+                <span class="input-group-addon">Date</span>
+                <input type="text" class="form-control" data-ng-model="entry.newDate" required>
+            </div>
+            <div class="input-group">
+                <span class="input-group-addon">Weight</span>
+                <input type="text" class="form-control" data-ng-model="entry.newWeight" required>
+            </div>
+            <div class="input-group">
+                <span class="input-group-addon">Chest</span>
+                <input type="text" class="form-control" data-ng-model="entry.newFat_chest" required>
+            </div>
+            <div class="input-group">
+                <span class="input-group-addon">Abdominal</span>
+                <input type="text" class="form-control" data-ng-model="entry.newFatAbdominal" required>
+            </div>
+            <div class="input-group">
+                <span class="input-group-addon">Thigh</span>
+                <input type="text" class="form-control" data-ng-model="entry.newFatThigh" required>
+            </div>
+            <div class="input-group">
+                <span class="input-group-addon">Triceps</span>
+                <input type="text" class="form-control" data-ng-model="entry.newFatTriceps" required>
+            </div>
+            <div class="input-group">
+                <span class="input-group-addon">Subscapular</span>
+                <input type="text" class="form-control" data-ng-model="entry.newFatSubscapular" required>
+            </div>
+            <div class="input-group">
+                <span class="input-group-addon">Suprailiac</span>
+                <input type="text" class="form-control" data-ng-model="entry.newFatSuprailiac" required>
+            </div>
+            <div class="input-group">
+                <span class="input-group-addon">Midaxillary</span>
+                <input type="text" class="form-control" data-ng-model="entry.newFatMidaxillary" required>
+            </div>
+            <div class="input-group">
+                <span class="input-group-addon">Neck</span>
+                <input type="text" class="form-control" data-ng-model="entry.newNeck" required>
+            </div>
+            <div class="input-group">
+                <span class="input-group-addon">Shoulders</span>
+                <input type="text" class="form-control" data-ng-model="entry.newShoulders" required>
+            </div>
+            <div class="input-group">
+                <span class="input-group-addon">Chest</span>
+                <input type="text" class="form-control" data-ng-model="entry.newChest" required>
+            </div>
+            <div class="input-group">
+                <span class="input-group-addon">Biceps</span>
+                <input type="text" class="form-control" data-ng-model="entry.newBiceps" required>
+            </div>
+            <div class="input-group">
+                <span class="input-group-addon">Waist</span>
+                <input type="text" class="form-control" data-ng-model="entry.newWaist" required>
+            </div>
+            <div class="input-group">
+                <span class="input-group-addon">Hips</span>
+                <input type="text" class="form-control" data-ng-model="entry.newHips" required>
+            </div>
+            <div class="input-group">
+                <span class="input-group-addon">Thigh</span>
+                <input type="text" class="form-control" data-ng-model="entry.newThigh" required>
+            </div>
+        </div>
+        <input type="submit" data-ng-click="insertData()" value="Insert Data" class="btn btn-lg btn-success">
     </form>
 
+</div>
 
 
 
 
 
 
-<ul data-ng-repeat="profile in profiles">
-    <li>{{ profile.name }} <small>{{profile._id}}</small> <button data-ng-click="removeProfile(profile._id, entry.date)">Remove User</button></li>
-        <ul data-ng-repeat="entry in profile.entries">
-            <li>Date: {{ entry.date }}</li>
-            <li>Weight (Kg): {{ entry.weight }}</li>
-            <li>Chest: {{ entry.fat_chest }}</li>
-            <li>Abdominal: {{ entry.fat_abdominal }}</li>
-            <li>Thigh: {{ entry.fat_thigh }}</li>
-            <li>Triceps: {{ entry.fat_triceps }}</li>
-            <li>Subscapular: {{ entry.fat_subscapular }}</li>
-            <li>Suprailiac: {{ entry.fat_suprailiac }}</li>
-            <li>Midaxillary: {{ entry.fat_midaxillary }}</li>
-            <li>Neck: {{ entry.neck }}</li>
-            <li>Shoulders: {{ entry.shoulders }}</li>
-            <li>Chest: {{ entry.chest }}</li>
-            <li>Biceps: {{ entry.biceps }}</li>
-            <li>Waist: {{ entry.waist }}</li>
-            <li>Hips: {{ entry.hips }}</li>
-            <li>Thigh: {{ entry.thigh }}</li>
-            <li><button data-ng-click="removeEntry(profile._id, entry.date)">Remove Entry</button></li>
-        </ul>
-    </li>
 
-</ul>
+
+
 <script src="libs/angular.js"></script>
 <script src="libs/jquery.js"></script>
 <script src="libs/bootstrap.min.js"></script>

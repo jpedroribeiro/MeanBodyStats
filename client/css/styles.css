@@ -1,0 +1,36 @@
+section header {
+    margin-bottom: 8px;
+}
+.glyphicon-remove {
+    color: darkred;
+    cursor: pointer;
+    top: 3px;
+    font-size: 12px;
+}
+
+ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+.input-group-addon {
+    width: 40%;
+    text-align: right;
+}
+
+.input-group {
+    margin-bottom: 8px;
+}
+
+input.btn.btn-lg.btn-success {
+    margin-left: 14px;
+    width: 29.75%;
+    margin-bottom: 40px;
+}
+
+.eachEntry {
+    overflow: hidden;
+    margin-bottom: 16px;
+    border-bottom: 1px dashed #eee;
+    padding-bottom: 16px;
+}
